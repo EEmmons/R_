@@ -6,7 +6,7 @@ _Put your name by a task if you've started it; add DONE or something if you've f
 
 *Specific Tasks: One Per Person*
 
-* Signup Page: TREVOR
+* Signup Page: EMILY
 
 * Add Location Page: PATRICK
 
@@ -14,9 +14,9 @@ _Put your name by a task if you've started it; add DONE or something if you've f
 
 * Home Page: LIAM
 
-* User Profile Page
+* User Profile Page: ANTHONY
 
-* Search/Discover Page: EMILY
+* Search/Discover Page: TREVOR
 
 * Project Proposal Document
 
