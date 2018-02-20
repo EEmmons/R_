@@ -1,0 +1,17 @@
+#site-logo {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+#upload-image-form {
+	margin-bottom: 15px;
+}
+
+#uncommon-placeholder2 {
+	height: 50%;
+	width: 50%;
+}
+
+.location-picker img {
+	max-width: 100%;
+}
