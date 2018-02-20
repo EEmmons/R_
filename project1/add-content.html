@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Uncommon Grounds</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="add-content-stylesheet.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img src="uncommon-test3.png" id="site-logo" alt="Uncommon Grounds logo"></a> <!-- link to homepage -->
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+  <!--       <li class="active"><a href="#">Home</a></li> -->
+        <li><a href="#"><span class="glyphicon glyphicon-leaf"></span>Profile</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>Add a Spot</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-globe"></span>Discover New Spots</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-eye-open"></span>Look at a Spot</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-blackboard"></span>About</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>Add Your Place</h1>
+        <div class="col-sm-8">
+            <div class="panel-body">
+              <div class="upload-image-placeholder">
+              <img src="images/uncommon-placeholder2.png" id="uncommon-placeholder2" alt="Image preview placeholder">
+            </div>
+            </div>
+          <p class="lead">Select a PNG or JPEG image, having maximum size <span id="max-size"></span> KB.</p>
+          <form id="upload-image-form" action="" method="post" enctype="multipart/form-data">
+            <div id="image-preview-div" style="display: none">
+              <label for="exampleInputFile">Selected image:</label>
+              <br>
+              <img id="preview-img" src="noimage">
+            </div>
+            <div class="form-group">
+              <input type="file" name="file" id="file" required>
+            </div>
+            <button class="btn btn-lg btn-primary" id="upload-button" type="submit" disabled>Upload image</button>
+          </form>
+    </div>
+      <div class="form-group col-sm-8">
+        <label for="usr">Title:</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+      <div class="form-group col-sm-8">
+        <label for="comment">Description:</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+      </div>
+        <div class="panel-body col-sm-8">
+          <div class="location-picker">
+            <label for="map">Drop a pin at your location:</label>
+          <img src="images/geocode-example-snip.png" alt="Location picker map">
+        </div>
+        </div>
+      
+    </div>
+
+    <div class="col-sm-2 sidenav">
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
