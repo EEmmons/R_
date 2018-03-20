@@ -15,13 +15,15 @@ class Location(models.Model):
     """
 
     name = models.CharField(max_length=100, help_text="Enter the name of location")
+    
     """GPS_coordinates = """
+    
     description = models.TextField(max_length=1000, help_text="Brief description of location")
     tags = models.ManyToManyField(Tag)
     ratings = models.FloatField()
     popularity = models.IntegerField()
     comments = models.TextField(max_length=1000)
-    image = models.ImageField(upload_to = 'location_images/',default = 'pic_folder/None/no-img.jpg')
+    image = models.ImageField(upload_to = 'location_images/')
     
     def __str__(self):
         """
