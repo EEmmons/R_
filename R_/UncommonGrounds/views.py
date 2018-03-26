@@ -44,6 +44,3 @@ class TagListView(generic.ListView):
 
 class CommentListView(generic.ListView):
 	model = Comment
-
-class About():
-    pass

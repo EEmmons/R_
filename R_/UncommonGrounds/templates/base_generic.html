@@ -20,20 +20,21 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <!-- <img src="uncommon_logo.png"> -->
+      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
+      </button> -->
     <!-- link to homepage -->
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li class="active"><a href="#">Home</a></li> -->
+        <li><a href="{% url 'discover' %}"><span class="glyphicon glyphicon-globe"></span>Discover</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-leaf"></span>Profile</a></li>
-        <li><a href="{% url 'discover' %}"><span class="glyphicon glyphicon-globe"></span>Discover New Spots</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>Add a Spot</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-eye-open"></span>Find Uncommon Friends</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>Add Uncommon Place</a></li>
+        <li><a href="{% url 'users' %}"><span class="glyphicon glyphicon-eye-open"></span>Find Uncommon Friends</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-blackboard"></span>About</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -47,9 +48,8 @@
 {% block content %}{% endblock %}
 
 
-
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+  <p>Find Your Uncommon Grounds!</p>
 </footer>
 
 </body>
