@@ -5,7 +5,7 @@ from django.views import generic
 # Create your views here.
 
 
-def index(request):
+def discover(request):
     """
     View function for home page of site.
     """
@@ -23,14 +23,20 @@ def index(request):
 
     return render(
         request,
-        'index.html',
+        'discover.html',
         context = {'num_locations':num_locations}
     )
 
 class LocationListView(generic.ListView):
     model = Location
 
+class LocationDetailView(generic.DetailView):
+    model = Location
+
 class UserListView(generic.ListView):
+    model = User
+
+class UserDetailView(generic.DetailView):
     model = User
 
 class TagListView(generic.ListView):
@@ -38,3 +44,6 @@ class TagListView(generic.ListView):
 
 class CommentListView(generic.ListView):
 	model = Comment
+
+class About():
+    pass
