@@ -60,7 +60,7 @@ class Comment(models.Model):
     """
     Model representing a comment.
     """
-    location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
+    location = models.ForeignKey('Location', related_name="loc_about", on_delete=models.SET_NULL, null=True) 
     author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True) 
     text = models.TextField(max_length=500)
     created_date = models.DateTimeField(auto_now_add=True)
