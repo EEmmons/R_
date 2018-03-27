@@ -27,7 +27,7 @@ class Location(models.Model):
     ratings = models.FloatField()
     popularity = models.IntegerField()
     added = models.DateTimeField(auto_now_add=True)
-    comments = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True) 
+    comments = models.ForeignKey('Comment', related_name="loc_comments", on_delete=models.SET_NULL, null=True) 
     image = models.ImageField(upload_to = 'location_images/')
 
     def __str__(self):
@@ -60,7 +60,7 @@ class Comment(models.Model):
     """
     Model representing a comment.
     """
-    location = models.ForeignKey('Location', related_name="loc_about", on_delete=models.SET_NULL, null=True) 
+    location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
     author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True) 
     text = models.TextField(max_length=500)
     created_date = models.DateTimeField(auto_now_add=True)
