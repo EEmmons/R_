@@ -24,7 +24,15 @@ class Location(models.Model):
 
     description = models.TextField(max_length=1000, help_text="Brief description of location")
     tags = models.ManyToManyField(Tag)
-    ratings = models.FloatField()
+    RATING = (
+        (0, ' '),
+        (1, '*'),
+        (2, '**'),
+        (3, '***'),
+        (4, '****'),
+        (5, '*****'),
+    )
+    ratings = models.IntegerField(choices=RATING, blank=True, default=' ')
     popularity = models.IntegerField()
     added = models.DateTimeField(auto_now_add=True)
     comments = models.ForeignKey('Comment', related_name="loc_comments", on_delete=models.SET_NULL, null=True) 
