@@ -41,8 +41,9 @@ class User(models.Model):
     username = models.CharField(max_length=50, help_text="Enter username")
     password = models.CharField(max_length=50, help_text="Enter password")
     user_tags = models.ManyToManyField(Tag)
-    favorites = models.ManyToManyField(Location)
-    location = models.CharField(max_length=100, help_text="location")
+    favorites = models.ManyToManyField(Location, related_name = "faves")
+    # location = models.CharField(max_length=100, help_text="location")
+    locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
 
     def __str__(self):
         """
