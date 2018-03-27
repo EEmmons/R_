@@ -19,6 +19,9 @@ class Location(models.Model):
 
     """GPS_coordinates = """
 
+    # NEED CONTRIBUTOR
+    # contributor = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+
     description = models.TextField(max_length=1000, help_text="Brief description of location")
     tags = models.ManyToManyField(Tag)
     ratings = models.FloatField()
@@ -57,6 +60,7 @@ class Comment(models.Model):
     """
     Model representing a comment.
     """
+    location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
     author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True) 
     text = models.TextField(max_length=500)
     created_date = models.DateTimeField(auto_now_add=True)
