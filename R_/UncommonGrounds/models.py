@@ -24,6 +24,7 @@ class Location(models.Model):
     ratings = models.FloatField()
     popularity = models.IntegerField()
     comments = models.TextField(max_length=1000)
+    added = models.DateTimeField(auto_now_add=True)
     # comments = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True) 
     image = models.ImageField(upload_to = 'location_images/')
 
@@ -42,6 +43,7 @@ class User(models.Model):
     password = models.CharField(max_length=50, help_text="Enter password")
     user_tags = models.ManyToManyField(Tag)
     favorites = models.ManyToManyField(Location, related_name = "faves")
+    user_since = models.DateTimeField(auto_now_add=True)
     # location = models.CharField(max_length=100, help_text="location")
     locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
 
