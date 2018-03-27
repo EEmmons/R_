@@ -23,9 +23,8 @@ class Location(models.Model):
     tags = models.ManyToManyField(Tag)
     ratings = models.FloatField()
     popularity = models.IntegerField()
-    comments = models.TextField(max_length=1000)
     added = models.DateTimeField(auto_now_add=True)
-    # comments = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True) 
+    comments = models.ForeignKey('Comment', on_delete=models.SET_NULL, null=True) 
     image = models.ImageField(upload_to = 'location_images/')
 
     def __str__(self):
