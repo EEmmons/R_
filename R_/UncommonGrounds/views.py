@@ -11,20 +11,24 @@ def discover(request):
     """
 
     # Generate counts of the main objects
-
     num_locations = Location.objects.all().count()
-
-    # # Available books (status = 'a')
-
-    # num_instances_available = BookInstance.objects.filter(status__exact='a').count()
-    # num_authors = Author.objects.count()
+    num_users = User.objects.all().count()
+    num_tags = Tag.objects.all().count()
 
     # Render the HTML template index.html with the data in the context variable
-
     return render(
         request,
         'discover.html',
-        context = {'num_locations':num_locations}
+        context = {'num_locations':num_locations,'num_users':num_users,'num_tags':num_tags}
+    )
+
+def profile(request):
+    profile_favorites = User.favorites
+
+    return render(
+        request,
+        'profile.html',
+        context = {'profile_favorties':profile_favorites}
     )
 
 class LocationListView(generic.ListView):
