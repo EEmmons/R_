@@ -35,7 +35,7 @@ class Location(models.Model):
     ratings = models.IntegerField(choices=RATING, blank=True, default=' ')
     popularity = models.IntegerField()
     added = models.DateTimeField(auto_now_add=True)
-    comments = models.ForeignKey('Comment', related_name="loc_comments", on_delete=models.SET_NULL, null=True, blank = True) 
+    comments = models.ForeignKey('Comment', related_name="loc_comments", on_delete=models.SET_NULL, null=True) 
     image = models.ImageField(upload_to = 'location_images/')
 
     def __str__(self):
@@ -55,14 +55,13 @@ class User(models.Model):
     favorites = models.ManyToManyField(Location, related_name = "faves")
     user_since = models.DateTimeField(auto_now_add=True)
     # location = models.CharField(max_length=100, help_text="location")
-    locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True, blank=True) 
+    locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
 
     def __str__(self):
         """
         String for representing the Model object (in Admin site etc.)
         """
         return self.username
-
 
 class Comment(models.Model):
     """

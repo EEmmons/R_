@@ -31,6 +31,13 @@ def profile(request):
         context = {'profile_favorties':profile_favorites}
     )
 
+def addLocation(request):
+    return render(
+        request,
+        'add_location.html',
+    )
+
+
 class LocationListView(generic.ListView):
     model = Location
 
