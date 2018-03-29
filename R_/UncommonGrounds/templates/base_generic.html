@@ -31,11 +31,13 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li class="active"><a href="#">Home</a></li> -->
+        <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'locations' %}"><span class="glyphicon glyphicon-globe"></span>Discover</a></li>
         <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-leaf"></span>Profile</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>Add Uncommon Place</a></li>
         <li><a href="{% url 'users' %}"><span class="glyphicon glyphicon-eye-open"></span>Find Uncommon Friends</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-blackboard"></span>About</a></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'addLocation' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
