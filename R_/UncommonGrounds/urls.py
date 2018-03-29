@@ -4,7 +4,10 @@ from . import views
 
 urlpatterns = [
 
+<<<<<<< HEAD
 	path('', views.home, name='home'),
+=======
+>>>>>>> 3985c5af3e947557105a4c41fc3f7752c4a7b1a4
 	path('discover/', views.discover, name='discover'),
 	path('', views.discover, name='discover'),
 	path('profile/', views.profile, name='profile'),
