@@ -1,6 +1,6 @@
-<!--<!DOCTYPE html>-->
 
-{%extends "base_generic.html" %}
+
+{% extends "base_generic.html" %}
 
 <!--<html lang="en">-->
 <!--<head>-->
@@ -42,11 +42,9 @@
 <!--</nav>-->
 
 {% block content %}
-{% load static %}
+<p>SOMETHING SHOULD BE HERE</p>
 
-    {% if location_list %}
-
-        <!-- HTML for SEARCH BAR -->
+        <p>SO HOMEY!</p>
             <div id="tfheader">
                 <form id="tfnewsearch" method="get" action="http://www.google.com">
                         <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
@@ -94,14 +92,5 @@
                 </div>
             </div>
         </div>
-
-    {% else %}
-        <p> ERROR: No locations added</p>
-    {% endif %}
-
-<!--<footer class="container-fluid text-center">-->
-  <!--<p>Footer Text</p>-->
-<!--</footer>-->
-
 
 {% endblock %}
