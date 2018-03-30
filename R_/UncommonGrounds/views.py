@@ -11,7 +11,7 @@ def discover(request):
     """
 
     # Generate counts of the main objects
-    num_locations = Location.objects.all().count()
+    location_list = Location.objects.all()
     num_users = User.objects.all().count()
     num_tags = Tag.objects.all().count()
 
@@ -19,7 +19,7 @@ def discover(request):
     return render(
         request,
         'discover.html',
-        context = {'num_locations':num_locations,'num_users':num_users,'num_tags':num_tags}
+        context = {'location_list':location_list}
     )
 
 def profile(request):
