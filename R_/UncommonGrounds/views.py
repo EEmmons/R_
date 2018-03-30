@@ -37,6 +37,12 @@ def addLocation(request):
         'UncommonGrounds/add_location.html',
     )
 
+def about(request):
+    return render(
+    request,
+    'UncommonGrounds/about.html',
+    )
+
 
 class LocationListView(generic.ListView):
     model = Location
