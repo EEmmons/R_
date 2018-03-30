@@ -27,14 +27,14 @@ def profile(request):
 
     return render(
         request,
-        'profile.html',
-        context = {'profile_favorties':profile_favorites}
+        'UncommonGrounds/profile.html',
+        context = {'profile_favorites':profile_favorites}
     )
 
 def addLocation(request):
     return render(
         request,
-        'add_location.html',
+        'UncommonGrounds/add_location.html',
     )
 
 
