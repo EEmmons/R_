@@ -42,7 +42,6 @@
 <!--</nav>-->
 
 {% block content %}
-<p>SOMETHING SHOULD BE HERE</p>
 
         <p>SO HOMEY!</p>
             <div id="tfheader">
@@ -59,15 +58,15 @@
                 <div class="col-sm-6">
                     <h1 class="img-title"><a href="{{location_list.1.get_absolute_url}}">{{location_list.1.name}}</a></h1>
                     <div>
-                        <div style="display: inline"><img src="https://placehold.it/150x80?text=IMAGE"  style="width:50%" alt="Image"></div>
+                        <div style="display: inline"><img src="{{location_list.1.image}}"  style="width:50%" alt="Image"></div>
                         <div style="display: inline-block"><p style="width:100%" >{{location_list.1.ratings}}</p></div>
                     </div>
                     <p class="img-text">{{location_list.1.description}}</p>
                 </div>
                 <div class="col-sm-6" class="img-text">
-                    <h1 class="img-title"><a href="{{location_list.2.get_absolute_url}}">{{location_list.1.name}}</a>{{location_list.2.name}}</h1>
+                    <h1 class="img-title"><a href="{{location_list.2.get_absolute_url}}">{{location_list.2.name}}</a></h1>
                     <div>
-                        <div style="display: inline"><img src="https://placehold.it/150x80?text=IMAGE"  style="width:50%" alt="Image"></div>
+                        <div style="display: inline"><img src="{{location_list.2.image}}"  style="width:50%" alt="Image"></div>
                         <div style="display: inline-block"><p style="width:100%: 1px solid #888888" >{{location_list.2.ratings}}</p></div>
                     </div>
                     <p class="img-text">{{location_list.2.description}}</p>
@@ -75,17 +74,17 @@
             </div>
             <div class="row">
                 <div class="col-sm-6" class="img-text">
-                    <h1 class="img-title"><a href="{{location_list.3.get_absolute_url}}">{{location_list.1.name}}</a>{{location_list.3.name}}</h1>
+                    <h1 class="img-title"><a href="{{location_list.3.get_absolute_url}}">{{location_list.3.name}}</a></h1>
                     <div>
-                        <div style="display: inline"><img src="https://placehold.it/150x80?text=IMAGE"  style="width:50%" alt="Image"></div>
+                        <div style="display: inline"><img src="{{location_list.3.image}}"  style="width:50%" alt="Image"></div>
                         <div style="display: inline-block"><p style="width:100%" >{{location_list.3.ratings}}</p></div>
                     </div>
                     <p class="img-text">{{location_list.3.description}}</p>
                 </div>
                 <div class="col-sm-6" class="img-text">
-                    <h1 class="img-title"><a href="{{location_list.4.get_absolute_url}}">{{location_list.1.name}}</a>{{location_list.4.name}}</h1>
+                    <h1 class="img-title"><a href="{{location_list.4.get_absolute_url}}">{{location_list.4.name}}</a></h1>
                     <div>
-                        <div style="display: inline"><img src="https://placehold.it/150x80?text=IMAGE"  style="width:50%" alt="Image"></div>
+                        <div style="display: inline"><img src="{{location_list.4.image}}"  style="width:50%" alt="Image"></div>
                         <div style="display: inline-block"><p style="width:100%" >{{location_list.4.ratings}}</p></div>
                     </div>
                     <p class="img-text">{{location_list.3.description}}</p>
