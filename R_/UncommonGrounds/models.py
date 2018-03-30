@@ -20,8 +20,7 @@ class Location(models.Model):
 
     """GPS_coordinates = """
 
-    # NEED CONTRIBUTOR
-    # contributor = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    contributor = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
 
     description = models.TextField(max_length=1000, help_text="Brief description of location")
     tags = models.ManyToManyField(Tag)
@@ -36,7 +35,7 @@ class Location(models.Model):
     ratings = models.IntegerField(choices=RATING, blank=True, default=' ')
     popularity = models.IntegerField()
     added = models.DateTimeField(auto_now_add=True)
-    comments = models.ForeignKey('Comment', related_name="loc_comments", on_delete=models.SET_NULL, null=True) 
+    comments = models.ForeignKey('Comment', related_name="loc_comments", on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to = 'location_images/')
 
     def __str__(self):
@@ -57,8 +56,7 @@ class User(models.Model):
     user_tags = models.ManyToManyField(Tag)
     favorites = models.ManyToManyField(Location, related_name = "faves")
     user_since = models.DateTimeField(auto_now_add=True)
-    # location = models.CharField(max_length=100, help_text="location")
-    locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
+    locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         """
@@ -70,8 +68,8 @@ class Comment(models.Model):
     """
     Model representing a comment.
     """
-    location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True) 
-    author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True) 
+    location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
     text = models.TextField(max_length=500)
     created_date = models.DateTimeField(auto_now_add=True)
     approved_comment = models.BooleanField(default=False)
