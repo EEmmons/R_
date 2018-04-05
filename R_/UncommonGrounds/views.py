@@ -31,16 +31,22 @@ def profile(request):
         context = {'profile_favorites':profile_favorites}
     )
 
-def addLocation(request):
+def addUser(request):
     return render(
         request,
-        'UncommonGrounds/add_location.html',
+        'UncommonGrounds/add_user.html',
     )
 
 def about(request):
     return render(
     request,
     'UncommonGrounds/about.html',
+    )
+
+def login(request):
+    return render(
+    request,
+    'UncommonGrounds/login.html',
     )
 
 
