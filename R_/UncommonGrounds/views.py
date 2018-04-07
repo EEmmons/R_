@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Location, User, Tag, Comment
+from .models import Location, Tag, Comment, Profile
 from django.views import generic
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -12,7 +13,6 @@ def discover(request):
 
     # Generate counts of the main objects
     location_list = Location.objects.all()
-    num_users = User.objects.all().count()
     num_tags = Tag.objects.all().count()
 
     # Render the HTML template index.html with the data in the context variable
@@ -23,13 +23,16 @@ def discover(request):
     )
 
 def profile(request):
-    profile_favorites = User.favorites
-
     return render(
-        request,
-        'UncommonGrounds/profile.html',
-        context = {'profile_favorites':profile_favorites}
-    )
+	    request,
+	    'UncommonGrounds/profile.html',
+	)
+
+def users(request):
+    return render(
+	    request,
+	    'UncommonGrounds/user_list.html',
+	)
 
 def addUser(request):
     return render(
@@ -39,15 +42,15 @@ def addUser(request):
 
 def about(request):
     return render(
-    request,
-    'UncommonGrounds/about.html',
-    )
+	    request,
+	    'UncommonGrounds/about.html',
+	    )
 
 def login(request):
     return render(
-    request,
-    'UncommonGrounds/login.html',
-    )
+	    request,
+	    'UncommonGrounds/login.html',
+	    )
 
 
 class LocationListView(generic.ListView):
@@ -56,14 +59,14 @@ class LocationListView(generic.ListView):
 class LocationDetailView(generic.DetailView):
     model = Location
 
-class UserListView(generic.ListView):
-    model = User
-
-class UserDetailView(generic.DetailView):
-    model = User
-
 class TagListView(generic.ListView):
     model = Tag
 
 class CommentListView(generic.ListView):
 	model = Comment
+
+class UserListView(generic.ListView):
+	model = User
+
+class ProfileListView(generic.ListView):
+	model = Profile

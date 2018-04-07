@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.timezone import now
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Tag(models.Model):
@@ -20,7 +23,7 @@ class Location(models.Model):
 
     """GPS_coordinates = """
 
-    contributor = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    contributor = models.ForeignKey('Profile', on_delete=models.SET_NULL, null=True)
 
     description = models.TextField(max_length=1000, help_text="Brief description of location")
     tags = models.ManyToManyField(Tag)
@@ -47,29 +50,38 @@ class Location(models.Model):
     def get_absolute_url(self):
         return reverse('location-detail', args=[str(self.id)])
 
-class User(models.Model):
+class Profile(models.Model):
     """
     Model representing a User.
     """
-    username = models.CharField(max_length=50, help_text="Enter username")
-    password = models.CharField(max_length=50, help_text="Enter password")
-    user_tags = models.ManyToManyField(Tag)
-    favorites = models.ManyToManyField(Location, related_name = "faves")
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to = 'location_images/')
     user_since = models.DateTimeField(auto_now_add=True)
-    locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
+    favorites = models.ManyToManyField(Location, related_name = "faves")
+    user_tags = models.ManyToManyField(Tag)
+    #locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
     def __str__(self):
         """
         String for representing the Model object (in Admin site etc.)
         """
-        return self.username
+        return self.user
 
 class Comment(models.Model):
     """
     Model representing a comment.
     """
     location = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
-    author = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey('Profile', on_delete=models.SET_NULL, null=True)
     text = models.TextField(max_length=500)
     created_date = models.DateTimeField(auto_now_add=True)
     approved_comment = models.BooleanField(default=False)

@@ -1,14 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>User List</h1>
+    <h1>Profile List</h1>
 
-    {% if user_list %}
+    {% if profile_list %}
     <ul>
 
-      {% for user in user_list %}
+      {% for profile in profile_list %}
       <li>
-        <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>
+        <a href="{{ profile.get_absolute_url }}">{{ profile.user.username }}</a>
       </li>
       {% endfor %}
 
