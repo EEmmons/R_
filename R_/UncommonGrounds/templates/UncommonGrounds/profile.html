@@ -72,11 +72,11 @@
         <div class="col-md-6" style="margin-left: 40px; font-size: 150%">
           <h1 style="font-size: 30px">Submitted Locations</h1>
 
-          {{user.profile.locations}}
-          {% if location_list %}
-            {% for location in location_list %}
+          
+          {% if profile %}
+            {% for favorites in profile %}
               <li>
-              <a href="{{ user.profile.get_absolute_url }}">{{ user.profile.favorites }}</a>
+              <a href="{{ profile.favorites.get_absolute_url }}">{{ profile.favorites }}</a>
               </li>
             {% endfor %}
           {% else %}
