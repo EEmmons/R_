@@ -29,10 +29,12 @@ def discover(request):
     )
 
 def profile(request):
+    favorites_list = Profile.objects.all()
 
     return render(
 	    request,
 	    'UncommonGrounds/profile.html',
+        context = {'favorites_list':favorites_list}
 	)
 
 def users(request):

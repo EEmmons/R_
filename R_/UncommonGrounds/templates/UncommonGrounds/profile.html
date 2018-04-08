@@ -1,16 +1,6 @@
-
 {% extends "base_generic.html" %}
-{% load static %}
 {% block content %}
-
-
-
-
-
-
-
-
-
+{% load static %}
 
 <link href="{% static 'css/ProfilePage.css' %}" type="text/css" rel="stylesheet" />
 <script src="{% static 'js/ProfilePage.js' %}"></script>
@@ -18,11 +8,12 @@
 <div class="col-lg-6 col-sm-6" style="width: 100%;height: 100%">
     <div class="card hovercard">
         <div class="card-background">
-            <img class="card-bkimg" alt="" src="{{ profile.profile_image.url }}">
+            <img class="card-bkimg" alt="" src="{{ user.profile.profile_image.url }}">
             <!-- http://lorempixel.com/850/280/people/9/ -->
         </div>
+
         <div class="useravatar">
-            <img alt="" src="{{ profile.profile_image.url }}">
+            <img alt="" src="{{ user.profile.profile_image.url }}">
         </div>
         <div class="card-info"> <span class="card-title">{{user.username}}</span>
         </div>
@@ -58,10 +49,10 @@
         <div class="col-md-6" style="margin-left: 40px; font-size: 150%">
           <h1 style="font-size: 30px">Submitted Locations</h1>
 
-{% if profile_list %}
-  {% for profile in profile_list %}
+{% if favorites_list %}
+  {% for favorites in favorites_list %}
               <li>
-              <a href="{{ profile.favorites.get_absolute_url }}">{{ profile.favorites }}</a>
+              <a href="{{ user.profile.favorites.get_absolute_url }}">{{ user.profile.favorites }}</a>
               </li>
   {% endfor %}
 {% else %}
