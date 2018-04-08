@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+  {% load static %}
     <h1>Profile List</h1>
 
     {% if profile_list %}
@@ -9,6 +10,7 @@
       {% for profile in profile_list %}
       <li>
         <a href="{{ profile.get_absolute_url }}">{{ profile.user.username }}</a>
+        <img src='{{ profile.profile_image.url}}'
       </li>
       {% endfor %}
 

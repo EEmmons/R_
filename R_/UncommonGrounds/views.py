@@ -2,6 +2,12 @@ from django.shortcuts import render
 from .models import Location, Tag, Comment, Profile
 from django.views import generic
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+import datetime
 
 # Create your views here.
 
@@ -23,6 +29,7 @@ def discover(request):
     )
 
 def profile(request):
+
     return render(
 	    request,
 	    'UncommonGrounds/profile.html',
@@ -52,6 +59,19 @@ def login(request):
 	    'UncommonGrounds/login.html',
 	    )
 
+# @login_required
+# def add_profile(request):
+#     if request.method == 'GET':
+#         form = ProfileForm()
+#     else:
+#         user=Profile.object.get(pk=request.profile.id)
+#         form=ProfileForm(request.POST, request.FILES)
+#         pic=Profile(profile_image=request.FILES['profile_image'])
+#         print ("......image.....", pic.profile_image)
+#         pic.save()
+
+#         return redirect('/profile/')
+#     return render(request, 'profile.html', {'form':form})
 
 class LocationListView(generic.ListView):
     model = Location

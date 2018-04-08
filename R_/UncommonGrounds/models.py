@@ -4,6 +4,7 @@ from django.utils.timezone import now
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from PIL import Image
 
 # Create your models here.
 class Tag(models.Model):
@@ -55,7 +56,7 @@ class Profile(models.Model):
     Model representing a User.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to = 'location_images/')
+    profile_image = models.ImageField(upload_to = 'profile_images')
     user_since = models.DateTimeField(auto_now_add=True)
     favorites = models.ManyToManyField(Location, related_name = "faves")
     user_tags = models.ManyToManyField(Tag)
@@ -74,7 +75,7 @@ class Profile(models.Model):
         """
         String for representing the Model object (in Admin site etc.)
         """
-        return self.user
+        return self.user.username
 
 class Comment(models.Model):
     """
