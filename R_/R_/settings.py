@@ -120,9 +120,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '/UncommonGrounds/static/'
+
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'UncommonGrounds/R_/Uncommon-Grounds/static/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'UncommonGrounds/static/media')
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
