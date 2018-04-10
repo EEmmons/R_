@@ -9,6 +9,14 @@
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     	  <div class="modal-dialog">
 				<div class="loginmodal-container">
+					{% if messages %}
+            			<ul>
+                		{% for message in messages %}
+                		<li>{{ message }}</li>
+                	{	% endfor %}
+            		</ul>
+        			{% endif %}
+
 					<h1>Login to Your Account</h1><br>
 				  <form>
 					<input type="text" name="user" placeholder="Username">

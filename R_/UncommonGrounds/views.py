@@ -43,11 +43,22 @@ def users(request):
 	    'UncommonGrounds/user_list.html',
 	)
 
+from UncommonGrounds.forms import UserCreateForm
+from django.contrib.auth import login
+from django.contrib import messages
+
 def addUser(request):
-    return render(
-        request,
-        'UncommonGrounds/add_user.html',
-    )
+    if request.method == "POST":
+        form = UserCreateForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            messages.success(request, 'Account created successfully')
+            return HttpResponseRedirect("/accounts/login/")
+            # redirect, or however you want to get to the main view
+    else:
+        form = UserCreateForm()
+
+    return render(request, 'UncommonGrounds/add_user.html', {'form': form}) 
 
 def about(request):
     return render(

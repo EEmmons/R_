@@ -78,9 +78,6 @@ span.psw {
     <img src="location_images/beacj.jpg" alt="Avatar" class="avatar">
   </div>
   -->
-  {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
@@ -92,9 +89,21 @@ span.psw {
 {% endif %}
 
 <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
+
 
   <div class="container">
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+    {% if form.errors %}
+<p style="color: red">Your username and password didn't match. Please try again.</p>
+{% endif %}
+{% csrf_token %}
     <label for="uname"><b>Username</b></label>
     <td>{{ form.username }}</td>
 
