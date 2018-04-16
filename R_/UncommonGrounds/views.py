@@ -46,6 +46,7 @@ def users(request):
 from UncommonGrounds.forms import UserCreateForm
 from django.contrib.auth import login
 from django.contrib import messages
+from .forms import LocationAddForm
 
 def addUser(request):
     if request.method == "POST":
@@ -58,7 +59,7 @@ def addUser(request):
     else:
         form = UserCreateForm()
 
-    return render(request, 'UncommonGrounds/add_user.html', {'form': form}) 
+    return render(request, 'UncommonGrounds/add_user.html', {'form': form})
 
 def about(request):
     return render(
@@ -85,6 +86,21 @@ def login(request):
 
 #         return redirect('/profile/')
 #     return render(request, 'profile.html', {'form':form})
+
+@login_required
+def addLocation(request):
+
+    if request.method == 'POST':
+        form=LocationAddForm(request.POST)
+
+        if form.is_valid():
+            new_loc = form.save()
+            messages.success(request, 'Account created successfully')
+            return HttpResponseRedirect("/accounts/login/")
+    else:
+        form = LocationAddForm()
+
+    return render(request, 'UncommonGrounds/add_location.html', {'form': form})
 
 class LocationListView(generic.ListView):
     model = Location
