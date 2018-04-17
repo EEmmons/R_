@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import datetime
+from random import randint
 
 # Create your views here.
 
@@ -19,13 +20,46 @@ def discover(request):
 
     # Generate counts of the main objects
     location_list = Location.objects.all()
+    highest_rated  = None
+    highest_rating = 0
+    for location in location_list:
+        if location.ratings > highest_rating:
+            highest_rated = location
+            highest_rating = location.ratings
+
+    most_popular = None
+    highest_popularity = 0
+    for location in location_list:
+        if location.popularity > highest_popularity:
+            most_popular = location
+            highest_popularity = location.popularity
+
+    most_recent = location_list[0]
+    latest_date = location_list[0].added
+    for location in location_list:
+        add = location.added
+        add2 = location_list[0].added
+        if location.added > latest_date:
+            most_recent = location
+            latest_date = location.added
+
+    random = location_list[randint(0, len(location_list)-1)]
+    while random == highest_rated or random == most_popular or random == most_recent:
+        random = location_list[randint(0, len(location_list)-1)]
+
+
+
     num_tags = Tag.objects.all().count()
 
     # Render the HTML template index.html with the data in the context variable
     return render(
         request,
         'discover.html',
-        context = {'location_list':location_list}
+        context = {'location_list':location_list,
+                   'highest_rated':highest_rated,
+                   'most_popular': most_popular,
+                   'most_recent':  most_recent,
+                   'random': random}
     )
 
 def profile(request):
