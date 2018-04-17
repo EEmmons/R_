@@ -81,10 +81,19 @@
 
             <div id="tfheader">
                 <form id="tfnewsearch" method="get" action="http://www.google.com">
-                        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+                        <input type="text" class="tftextinput" id="location_autocomplete_input" size="21" name="q"><input type="submit" value="search" class="tfbutton">
                 </form>
             <div class="tfclear"></div>
             </div>
+
+        <script>
+  $(function() {
+    $("#location_autocomplete_input").autocomplete({
+      source: "{% url 'location-autocomplete' %}",
+      minLength: 1,
+    });
+  });
+</script>
 
         <div class="container">
             <!--<br>-->
