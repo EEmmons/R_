@@ -14,7 +14,7 @@ urlpatterns = [
 	path('profiles/', views.ProfileListView.as_view(), name='profiles'),
 	path('tags/', views.TagListView.as_view(), name='tags'),
 	path('comments/', views.CommentListView.as_view(), name='comments'),
-	path('addLocation/', views.addLocation, name='addLocation',),
+	path('location/create/', views.addLocation, name='location_form'),
 	path('location-autocomplete/', location_autocomplete, name='location-autocomplete'),
 
 ]

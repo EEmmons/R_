@@ -57,7 +57,7 @@ class LocationAddForm(forms.ModelForm):
     def clean_d(self):
         name = self.cleaned_data['name']
         description = self.cleaned_data['description']
-        r = Location.objects.filter(name=name)
+        r = Location.objects.filter(location__name__exact=name)
         if r.count():
             raise ValidationError("A location with that name already exists. Please change location name.")
         return name, description

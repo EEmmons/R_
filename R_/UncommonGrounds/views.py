@@ -82,7 +82,8 @@ from UncommonGrounds.forms import UserCreateForm
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
 from .forms import LocationAddForm
-
+from .models import Location
+from django.views.generic.edit import CreateView, DeleteView
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate
@@ -165,16 +166,16 @@ def location_autocomplete(request):
 def addLocation(request):
 
     if request.method == 'POST':
-        form=LocationAddForm(request.POST)
+        form = LocationAddForm(request.POST)
 
         if form.is_valid():
             new_loc = form.save()
-            messages.success(request, 'Account created successfully')
+            messages.success(request, 'Location added successfully')
             return HttpResponseRedirect("/accounts/login/")
     else:
         form = LocationAddForm()
 
-    return render(request, 'UncommonGrounds/add_location.html', {'form': form})
+    return render(request, 'UncommonGrounds/location_form.html', {'form': form})
 
 class LocationListView(generic.ListView):
     model = Location
