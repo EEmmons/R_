@@ -47,10 +47,11 @@
     <div class="tab-pane fade in active" id="tab1">
       <div class="row">
         <div class="col-md-6" style="margin-left: 40px; font-size: 150%">
-          <a href='{{ request.user.profile.id }}/edit/'>
+<!--           <a href='{{ request.user.profile.id }}/edit/'>
             <input type="button" value="Change Profile Image" />
-          </a>
-          
+          </a> -->
+
+          <a href="{% url 'profile:profile-update' pk=user.profile.id %}">
           <h1 style="font-size: 30px">Submitted Locations</h1>
 
 {% if favorites_list %}
