@@ -1,52 +1,141 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<style>
+            /* Remove the navbar's default margin-bottom and rounded borders */
+            .navbar {
+              margin-bottom: 0;
+              border-radius: 0;
+            }
 
-        <p>SO HOMEY!</p>
+            /* Add a gray background color and some padding to the footer */
+            footer {
+              background-color: #f2f2f2;
+              padding: 25px;
+            }
+
+
+          .img-text {
+            width: 100%; /* Set width to 100% */
+            margin: auto;
+            min-height:200px;
+            border: 1px solid #888888;
+          }
+
+          .img-title{
+            text-align:center;
+          }
+
+
+
+            #tfheader{
+                background-color:#000000;
+                text-align:center;
+                background: url("https://placehold.it/1200x400?text=IMAGE") center;
+            }
+            #tfnewsearch{
+                margin: 0 auto;
+                padding:200px;
+            }
+            .tftextinput{
+                margin: 0;
+                padding: 5px 15px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:14px;
+                border:1px solid #0076a3; border-right:0px;
+                border-top-left-radius: 5px 5px;
+                border-bottom-left-radius: 5px 5px;
+            }
+
+            .tfbutton {
+                margin: 0;
+                padding: 5px 15px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:14px;
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                color: #ffffff;
+                border: solid 1px #0076a3; border-right:0px;
+                background: #0095cd;
+                background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+                background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+                border-top-right-radius: 5px 5px;
+                border-bottom-right-radius: 5px 5px;
+            }
+            .tfbutton:hover {
+                text-decoration: none;
+                background: #007ead;
+                background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+                background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+            }
+            /* Fixes submit button height problem in Firefox */
+            .tfbutton::-moz-focus-inner {
+              border: 0;
+            }
+            .tfclear{
+                clear:both;
+            }
+        </style>
+
             <div id="tfheader">
                 <form id="tfnewsearch" method="get" action="http://www.google.com">
-                        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+                        <input type="text" class="tftextinput" id="location_autocomplete_input" size="21" name="q"><input type="submit" value="search" class="tfbutton">
                 </form>
             <div class="tfclear"></div>
             </div>
+
+        <script>
+  $(function() {
+    $("#location_autocomplete_input").autocomplete({
+      source: "{% url 'location-autocomplete' %}",
+      minLength: 1,
+    });
+  });
+</script>
 
         <div class="container">
             <!--<br>-->
 
             <div class="row">
                 <div class="col-sm-6">
-                    <h1 class="img-title"><a href="{{location_list.1.get_absolute_url}}">{{location_list.1.name}}</a></h1>
+                    <h1 class="img-title"><a href="{{most_recent.get_absolute_url}}">Newest Places</a></h1>
                     <div>
-                        <div style="display: inline"><img src="{{location_list.1.image}}"  style="width:50%" alt="Image"></div>
-                        <div style="display: inline-block"><p style="width:100%" >{{location_list.1.ratings}}</p></div>
+                        <div class="img-1" style="display: inline"><img src="{{most_recent.image.url}}"  style="width:50%" alt="Image"></div>
+                        <h2 class="title-1"><a href="{{most_recent.get_absolute_url}}">{{most_recent.name}}</a></h2>
+                        <div class="ratings-1" style="display: inline-block"><p style="width:100%" >{{most_recent.ratings}}</p></div>
                     </div>
-                    <p class="img-text">{{location_list.1.description}}</p>
+                    <p class="text-1">{{most_recent.description}}</p>
                 </div>
                 <div class="col-sm-6" class="img-text">
-                    <h1 class="img-title"><a href="{{location_list.2.get_absolute_url}}">{{location_list.2.name}}</a></h1>
+                    <h1 class="img-title"><a href="{{location_list.2.get_absolute_url}}">Highest Rated</a></h1>
                     <div>
-                        <div style="display: inline"><img src="{{location_list.2.image}}"  style="width:50%" alt="Image"></div>
-                        <div style="display: inline-block"><p style="width:100%: 1px solid #888888" >{{location_list.2.ratings}}</p></div>
+                        <div class="img-2" style="display: inline"><img src="{{highest_rated.image.url}}"  style="width:50%" alt="Image"></div>
+                        <h2 class="title-2"><a href="{{highest_rated.get_absolute_url}}">{{highest_rated.name}}</a></h2>
+                        <div class="ratings-2" style="display: inline-block"><p style="width:100%: 1px solid #888888" >{{highest_rated.ratings}}</p></div>
                     </div>
-                    <p class="img-text">{{location_list.2.description}}</p>
+                    <p class="text-2">{{highest_rated.description}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6" class="img-text">
-                    <h1 class="img-title"><a href="{{location_list.3.get_absolute_url}}">{{location_list.3.name}}</a></h1>
+                    <h1 class="img-title"><a href="{{most_popular.get_absolute_url}}">Popular</a></h1>
                     <div>
-                        <div style="display: inline"><img src="{{location_list.3.image}}"  style="width:50%" alt="Image"></div>
-                        <div style="display: inline-block"><p style="width:100%" >{{location_list.3.ratings}}</p></div>
+                        <div class="img-3" style="display: inline"><img src="{{most_popular.image.url}}"  style="width:50%" alt="Image"></div>
+                        <h2 class="title-3"><a href="{{most_popular.get_absolute_url}}">{{most_popular.name}}</a></h2>
+                        <div class="ratings-3" style="display: inline-block"><p style="width:100%" >{{most_popular.ratings}}</p></div>
                     </div>
-                    <p class="img-text">{{location_list.3.description}}</p>
+                    <p class="text-3">{{most_popular.description}}</p>
                 </div>
                 <div class="col-sm-6" class="img-text">
-                    <h1 class="img-title"><a href="{{location_list.4.get_absolute_url}}">{{location_list.4.name}}</a></h1>
+                    <h1 class="img-title"><a href="{{random.get_absolute_url}}">Feeling Adventerous?</a></h1>
                     <div>
-                        <div style="display: inline"><img src="{{location_list.4.image}}"  style="width:50%" alt="Image"></div>
-                        <div style="display: inline-block"><p style="width:100%" >{{location_list.4.ratings}}</p></div>
+                        <div class="img-4" style="display: inline"><img src="{{random.image.url}}"  style="width:50%" alt="Image"></div>
+                        <h2 class="title-4"><a href="{{random.get_absolute_url}}">{{random.name}}</a></h2>
+                        <div class="ratings-4" style="display: inline-block"><p style="width:100%" >{{random.ratings}}</p></div>
                     </div>
-                    <p class="img-text">{{location_list.3.description}}</p>
+                    <p class="text-4">{{random.description}}</p>
                 </div>
             </div>
         </div>

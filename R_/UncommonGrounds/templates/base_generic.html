@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- jQuery !-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+  <!-- jQuery UI !-->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
   {% load static %}
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
@@ -33,7 +38,7 @@
         <!-- <li class="active"><a href="#">Home</a></li> -->
         <li><a href="{% url 'discover' %}">Home</a></li>
         <li><a href="{% url 'locations' %}"><span class="glyphicon glyphicon-globe"></span>Discover</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>Add Uncommon Place</a></li>
+        <li><a href="{% url 'addLocation' %}"><span class="glyphicon glyphicon-pencil"></span>Add Uncommon Place</a></li>
         <li><a href="{% url 'profiles' %}"><span class="glyphicon glyphicon-eye-open"></span>Find Uncommon Friends</a></li>
         <li><a href="{% url 'about' %}"><span class="glyphicon glyphicon-blackboard"></span>About</a></li>
 

@@ -29,7 +29,7 @@ class Location(models.Model):
     description = models.TextField(max_length=1000, help_text="Brief description of location")
     tags = models.ManyToManyField(Tag)
     RATING = (
-        (0, ' '),
+        (0, ''),
         (1, '*'),
         (2, '**'),
         (3, '***'),
