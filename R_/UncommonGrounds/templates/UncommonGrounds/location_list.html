@@ -8,9 +8,19 @@
       <h1>Location List</h1>
       <div class="form-group">
         <label for="search">Search:</label>
-        <input type="text" class="form-control" id="search_input">
+        <input type="text" class="form-control" id="location_autocomplete_input">
       </div>
       <hr>
+
+<script>
+  $(function() {
+    $("#location_autocomplete_input").autocomplete({
+      source: "{% url 'location-autocomplete' %}",
+      minLength: 1,
+    });
+  });
+</script>
+
 
 {% if location_list %}
   {% for location in location_list %}

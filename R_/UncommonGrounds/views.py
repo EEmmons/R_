@@ -5,10 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import *
 from django.urls import reverse
 import datetime
 from random import randint
+import json
 
 # Create your views here.
 
@@ -106,6 +107,19 @@ def login(request):
 	    request,
 	    'UncommonGrounds/login.html',
 	    )
+
+def location_autocomplete(request):
+    if request.is_ajax():
+        query = request.GET.get('term', '')
+        locations = Location.objects.filter(name__icontains=query)
+        results = []
+        for loc in locations:
+            place_json = loc.name
+            results.append(place_json)
+        data = json.dumps(results)
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
 
 # @login_required
 # def add_profile(request):
