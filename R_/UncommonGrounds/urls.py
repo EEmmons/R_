@@ -16,7 +16,7 @@ urlpatterns = [
 	path('comments/', views.CommentListView.as_view(), name='comments'),
 	path('location/create/', views.addLocation, name='location_form'),
 	path('location-autocomplete/', location_autocomplete, name='location-autocomplete'),
-
+	path('profile/<int:pk>/edit/', views.ProfileUpdate.as_view(), name='profile-update'),
 ]
 
 from django.conf.urls import url
