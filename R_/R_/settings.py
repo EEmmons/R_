@@ -128,3 +128,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'UncommonGrounds/static/media')
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+# Email
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'anthonylee3737@gmail.com'
+EMAIL_HOST_PASSWORD = 'compsci28377207'
+EMAIL_PORT = 587

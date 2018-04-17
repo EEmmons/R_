@@ -13,4 +13,12 @@ urlpatterns = [
 	path('profiles/', views.ProfileListView.as_view(), name='profiles'),
 	path('tags/', views.TagListView.as_view(), name='tags'),
 	path('comments/', views.CommentListView.as_view(), name='comments'),
+
+]
+
+from django.conf.urls import url
+urlpatterns += [
+	url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
+	path('account_activated/', views.confirmed, name='confirmed')
 ]
