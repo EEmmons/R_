@@ -10,6 +10,7 @@ from django.urls import reverse
 import datetime
 from random import randint
 import json
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -215,3 +216,7 @@ def confirmed(request):
         request,
         'UncommonGrounds/account_activation_successful.html',
         )
+    
+class ProfileUpdate(UpdateView):
+    model = Profile
+    fields = ['profile_image']
