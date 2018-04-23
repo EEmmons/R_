@@ -46,7 +46,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-          <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span>{{ user.get_username }}</a></li>
+          <li><a href="{% url 'user_profile' user.username %}"><span class="glyphicon glyphicon-user"></span>{{ user.get_username }}</a></li>
           <li><a href="{% url 'logout'%}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         {% else %}
           <li><a href="{% url 'addUser' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

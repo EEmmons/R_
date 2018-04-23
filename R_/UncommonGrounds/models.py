@@ -56,20 +56,17 @@ class Profile(models.Model):
     Model representing a User.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to = 'profile_images')
+    profile_image = models.ImageField(upload_to = 'profile_images', blank=True)
     user_since = models.DateTimeField(auto_now_add=True)
-    favorites = models.ManyToManyField(Location, related_name = "faves")
-    user_tags = models.ManyToManyField(Tag)
+    favorites = models.ManyToManyField(Location, related_name = "faves", blank=True)
+    user_tags = models.ManyToManyField(Tag, blank=True)
     #locations = models.ForeignKey('Location', on_delete=models.SET_NULL, null=True)
 
-    # @receiver(post_save, sender=User)
-    # def create_user_profile(sender, instance, created, **kwargs):
-    #     if created:
-    #         Profile.objects.create(user=instance)
-
-    # @receiver(post_save, sender=User)
-    # def save_user_profile(sender, instance, **kwargs):
-    #     instance.profile.save()
+    @receiver(post_save, sender=User)
+    def update_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+        instance.profile.save()
 
     def __str__(self):
         """

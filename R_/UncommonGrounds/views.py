@@ -64,21 +64,6 @@ def discover(request):
                    'random': random}
     )
 
-def profile(request):
-    favorites_list = Profile.objects.all()
-
-    return render(
-	    request,
-	    'UncommonGrounds/profile.html',
-        context = {'favorites_list':favorites_list}
-	)
-
-def users(request):
-    return render(
-	    request,
-	    'UncommonGrounds/user_list.html',
-	)
-
 from UncommonGrounds.forms import UserCreateForm
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
@@ -149,20 +134,6 @@ def location_autocomplete(request):
     return HttpResponse(data, mimetype)
 
 
-# @login_required
-# def add_profile(request):
-#     if request.method == 'GET':
-#         form = ProfileForm()
-#     else:
-#         user=Profile.object.get(pk=request.profile.id)
-#         form=ProfileForm(request.POST, request.FILES)
-#         pic=Profile(profile_image=request.FILES['profile_image'])
-#         print ("......image.....", pic.profile_image)
-#         pic.save()
-
-#         return redirect('/profile/')
-#     return render(request, 'profile.html', {'form':form})
-
 @login_required
 def addLocation(request):
 
@@ -216,7 +187,31 @@ def confirmed(request):
         request,
         'UncommonGrounds/account_activation_successful.html',
         )
-    
+
+#profile page using user name as url
+@login_required
+def profile_page(request, username):
+    user = get_object_or_404(User, username=username)
+    return render(request, 'UncommonGrounds/profile.html', {'profile_user': user})
+
+from .forms import LocationAddForm, UserProfileForm
+#user profile form
+@login_required
+def edit_profile(request, username):
+    profile = Profile.objects.get(user=request.user)
+    form = UserProfileForm(request.POST, request.FILES, instance=profile)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('../')
+        else:
+            print (form.errors)
+    else:
+        form = UserProfileForm()
+
+    return render(request, 'UncommonGrounds/edit_profile.html', {'form': form})
+
 class ProfileUpdate(UpdateView):
     model = Profile
     fields = ['profile_image']
+    success_url = 'UncommonGrounds/profile.html'

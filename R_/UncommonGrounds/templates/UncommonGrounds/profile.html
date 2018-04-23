@@ -8,14 +8,14 @@
 <div class="col-lg-6 col-sm-6" style="width: 100%;height: 100%">
     <div class="card hovercard">
         <div class="card-background">
-            <img class="card-bkimg" alt="" src="{{ user.profile.profile_image.url }}">
+            <img class="card-bkimg" alt="" src="{{ profile_user.profile.profile_image.url }}">
             <!-- http://lorempixel.com/850/280/people/9/ -->
         </div>
 
         <div class="useravatar">
-            <img alt="" src="{{ user.profile.profile_image.url }}">
+            <img alt="" src="{{ profile_user.profile.profile_image.url }}">
         </div>
-        <div class="card-info"> <span class="card-title">{{user.username}}</span>
+        <div class="card-info"> <span class="card-title">{{profile_user.username}}</span>
         </div>
     </div>
 
@@ -38,8 +38,6 @@
         </div>
     </div>
 
-
-
  <!-- Tab 1 -->
 
 <div class="well">
@@ -47,7 +45,9 @@
     <div class="tab-pane fade in active" id="tab1">
       <div class="row">
         <div class="col-md-6" style="margin-left: 40px; font-size: 150%">
-          <a href='{{ request.user.profile.id }}/edit/'>
+
+         
+          <a href="{% url 'edit_profile' user.username %}">
             <input type="button" value="Change Profile Image" />
           </a>
           
@@ -142,8 +142,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-  </body>
 
 {% endblock %}

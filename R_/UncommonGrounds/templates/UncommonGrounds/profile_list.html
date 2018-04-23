@@ -16,7 +16,7 @@
             <img src="{{ profile.profile_image.url }}" class="media-object">
           </div>
           <div class="media-body">
-            <a href="{{ profile.get_absolute_url }}"><h4 class="media-heading">{{ profile.user.username }}</h4></a>
+            <a href="{% url 'user_profile' profile.user.username %}"><h4 class="media-heading">{{ profile.user.username }}</h4></a>
             <p>Joined: {{ profile.user_since }}</p>
           </div>
           <hr>

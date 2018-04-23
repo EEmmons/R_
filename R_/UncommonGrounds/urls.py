@@ -7,7 +7,6 @@ urlpatterns = [
 	path('discover/', views.discover, name='discover'),
 	path('about/', views.about, name='about'),
 	path('', views.discover, name='discover'),
-	path('profile/', views.profile, name='profile'),
 	path('addUser/', views.addUser, name='addUser'),
 	path('locations/', views.LocationListView.as_view(), name='locations'),
 	path('location/<int:pk>', views.LocationDetailView.as_view(), name='location-detail'),
@@ -16,7 +15,10 @@ urlpatterns = [
 	path('comments/', views.CommentListView.as_view(), name='comments'),
 	path('location/create/', views.addLocation, name='location_form'),
 	path('location-autocomplete/', location_autocomplete, name='location-autocomplete'),
-	path('profile/<int:pk>/edit/', views.ProfileUpdate.as_view(), name='profile-update'),
+	path('<username>/', views.profile_page, name='user_profile'),
+	path('<username>/edit/', views.edit_profile, name='edit_profile'),
+	#path('edit/', views.edit_profile, name='edit_profile'),
+	#path('<username>/edit/', views.ProfileUpdate.as_view(), name='edit_profile'),
 ]
 
 from django.conf.urls import url

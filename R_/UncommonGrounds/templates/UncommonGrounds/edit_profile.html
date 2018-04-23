@@ -1,13 +1,14 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-<form action="" method="post">
+<form method="post" action="{% url 'edit_profile' user.username %}" >
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" />
-    
+    <div>
+    	{{ form.as_table }}
+	</div>
+	<div>
+		<input type="submit" value="Submit" />
+	</div>
 </form>
 
 {% endblock %}

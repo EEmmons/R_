@@ -1,27 +1,10 @@
-#from django import forms
 from django.core.exceptions import ValidationError
-# from django.utils.translation import ugettext_lazy as _
-# import datetime #for checking renewal date range.
-#from django.forms import ModelForm
-#from .models import Profile
-
-# class RenewBookModelForm(ModelForm):
-
-#     class Meta:
-#         model = Profile
-#         fields = ['profile_image',]
-#         labels = { 'profile_image': _('Profile Image'), }
-#         help_texts = { 'profile_image': _('Upload a photo.'), }
-
-# class ProfileForm(forms.Form):
-#   profile_image = forms.ImageField()
-
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.files.uploadedfile import SimpleUploadedFile
-from .models import Location
+from .models import Location, Profile
 
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Enter email')
@@ -43,6 +26,7 @@ class UserCreateForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
 
 class LocationAddForm(forms.ModelForm):
     name = forms.CharField(max_length=100, help_text="Enter the name of location")
@@ -70,3 +54,24 @@ class LocationAddForm(forms.ModelForm):
         if commit:
             location.save()
         return location
+
+
+class UserProfileForm(ModelForm):
+
+    # def clean_profile_image(self):
+    #     data = self.cleaned_data['profile_image']
+    #     # filename = Profile.objects.filter(profile_image=profile_image)
+    #     # if filename.invalid():
+    #     #     raise  ValidationError("Profile image already exists")
+    #     return data
+
+    # def save(self, commit=True):
+    #     profile = super(UserProfileForm, self).save(commit=False)
+    #     profile.profile_image = self.cleaned_data["profile_image"]
+    #     if commit:
+    #         profile.save()
+    #     return profile
+
+    class Meta:
+        model = Profile
+        fields = ["profile_image"]
