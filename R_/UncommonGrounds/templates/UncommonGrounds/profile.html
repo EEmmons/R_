@@ -47,7 +47,7 @@
         <div class="col-md-6" style="margin-left: 40px; font-size: 150%">
 
          
-          <a href="{% url 'edit_profile' user.username %}">
+          <a href="{% url 'edit_profile' user.username user.profile.id %}">
             <input type="button" value="Change Profile Image" />
           </a>
           

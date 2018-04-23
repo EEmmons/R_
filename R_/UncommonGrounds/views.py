@@ -191,10 +191,10 @@ def confirmed(request):
 #profile page using user name as url
 @login_required
 def profile_page(request, username):
-    user = get_object_or_404(User, username=username)
+    user = request.user
     return render(request, 'UncommonGrounds/profile.html', {'profile_user': user})
 
-from .forms import LocationAddForm, UserProfileForm
+from .forms import UserProfileForm
 #user profile form
 @login_required
 def edit_profile(request, username):
@@ -214,4 +214,4 @@ def edit_profile(request, username):
 class ProfileUpdate(UpdateView):
     model = Profile
     fields = ['profile_image']
-    success_url = 'UncommonGrounds/profile.html'
+    success_url = '../'

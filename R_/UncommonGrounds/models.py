@@ -56,7 +56,7 @@ class Profile(models.Model):
     Model representing a User.
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to = 'profile_images', blank=True)
+    profile_image = models.ImageField(upload_to = 'profile_images', default='profile_images/bagface.jpg')
     user_since = models.DateTimeField(auto_now_add=True)
     favorites = models.ManyToManyField(Location, related_name = "faves", blank=True)
     user_tags = models.ManyToManyField(Tag, blank=True)

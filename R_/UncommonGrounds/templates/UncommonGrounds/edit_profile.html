@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-<form method="post" action="{% url 'edit_profile' user.username %}" >
+<form method="post" action="" >
     {% csrf_token %}
     <div>
     	{{ form.as_table }}

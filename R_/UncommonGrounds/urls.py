@@ -16,9 +16,9 @@ urlpatterns = [
 	path('location/create/', views.addLocation, name='location_form'),
 	path('location-autocomplete/', location_autocomplete, name='location-autocomplete'),
 	path('<username>/', views.profile_page, name='user_profile'),
-	path('<username>/edit/', views.edit_profile, name='edit_profile'),
+	#path('<username>/edit/', views.edit_profile, name='edit_profile'),
 	#path('edit/', views.edit_profile, name='edit_profile'),
-	#path('<username>/edit/', views.ProfileUpdate.as_view(), name='edit_profile'),
+	path('<username>/edit/<int:pk>', views.ProfileUpdate.as_view(), name='edit_profile'),
 ]
 
 from django.conf.urls import url
