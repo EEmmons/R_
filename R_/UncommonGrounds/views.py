@@ -79,6 +79,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.core.mail import EmailMessage
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def addUser(request):
     if request.method == "POST":
@@ -191,7 +192,9 @@ def confirmed(request):
 #profile page using user name as url
 @login_required
 def profile_page(request, username):
-    user = request.user
+    user = get_object_or_404(User, username=username)
+    #user = request.user
+
     return render(request, 'UncommonGrounds/profile.html', {'profile_user': user})
 
 from .forms import UserProfileForm
@@ -211,7 +214,7 @@ def edit_profile(request, username):
 
     return render(request, 'UncommonGrounds/edit_profile.html', {'form': form})
 
-class ProfileUpdate(UpdateView):
+class ProfileUpdate(LoginRequiredMixin, UpdateView):
     model = Profile
     fields = ['profile_image']
     success_url = '../'

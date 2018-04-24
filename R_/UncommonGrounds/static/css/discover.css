@@ -1,3 +1,4 @@
 .media-left img {
 	max-width: 300px;
+	min-width: 300px;
 }

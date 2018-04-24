@@ -103,3 +103,7 @@ body {
 .tab-content{
     line-height: 30px;
 }
+
+.carousel-inner .active img {
+    margin: auto;
+}
