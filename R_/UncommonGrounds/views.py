@@ -278,6 +278,20 @@ def location_autocomplete(request):
     return HttpResponse(data, mimetype)
 
 
+# def user_autocomplete(request):
+#     if request.is_ajax():
+#         query = request.GET.get('term', '')
+#         users = Profile.objects.filter(user.username__icontains=query)
+#         results = []
+#         for u in users:
+#             user_json = u.name
+#             results.append(user_json)
+#         data = json.dumps(results)
+#     mimetype = 'application/json'
+#     return HttpResponse(data, mimetype)
+
+
+
 @login_required
 def addLocation(request):
 
