@@ -142,8 +142,8 @@ def addLocation(request):
         form = LocationAddForm(request.POST, request.FILES)
 
         if form.is_valid():
-            new_loc = form.save()
-            new_loc.contributor = request.user
+            new_loc = form.save(commit=True)
+            new_loc.contributor = request.user.profile
             new_loc.save()
             messages.success(request, 'Location added successfully')
             return HttpResponseRedirect("/accounts/login/")
