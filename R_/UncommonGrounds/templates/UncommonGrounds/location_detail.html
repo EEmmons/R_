@@ -12,7 +12,7 @@
       <h2>{{location.ratings}} Stars</h2>
       <p>Description: {{location.description}}</p>
       <p>Tags: {{location.tags}}</p>
-      <p>Contributed By:</p> <a href="{{ location.contributor.profile_user.get_absolute_url }}"><h4 class="media-heading">{{location.contributor.profile_user.username}}</h4></a></p>
+      <p>Contributed By:</p> <a href="{{ location.contributor.user.get_absolute_url }}"><h4 class="media-heading">{{location.contributor.user.username}}</h4></a></p>
   </div>
 </div>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
