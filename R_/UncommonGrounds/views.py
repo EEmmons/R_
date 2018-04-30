@@ -57,9 +57,8 @@ def discover(request):
 
     test = None
     if request.method == 'GET':
-        test = request.GET.get("search")
+        search = request.GET.get("search")
         # test = "TEST"
-        search = ""
         words = search.lower().split(" ")
         for word in words:
             for location in unfiltered_list:
