@@ -351,8 +351,10 @@ def confirmed(request):
 #profile page using user name as url
 @login_required
 def profile_page(request, username):
-    user = get_object_or_404(User, username=username)
-    #user = request.user
+    try:
+        user = User.objects.get(username = username)
+    except User.DoesNotExist:
+        user = request.user
 
     return render(request, 'UncommonGrounds/profile.html', {'profile_user': user})
 
