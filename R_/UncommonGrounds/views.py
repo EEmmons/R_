@@ -279,12 +279,14 @@ def location_autocomplete(request):
 
 @login_required
 def addLocation(request):
-    
+
     if request.method == 'POST':
         form = LocationAddForm(request.POST, request.FILES)
 
         if form.is_valid():
-            new_loc = form.save()
+            new_loc = form.save(commit=True)
+            new_loc.contributor = request.user.profile
+            new_loc.save()
             messages.success(request, 'Location added successfully')
             return HttpResponseRedirect("/accounts/login/")
     else:
