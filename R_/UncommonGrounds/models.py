@@ -24,7 +24,7 @@ class Location(models.Model):
 
     """GPS_coordinates = """
 
-    contributor = models.ForeignKey('Profile', on_delete=models.SET_NULL, null=True)
+    contributor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     description = models.TextField(max_length=1000, help_text="Brief description of location")
     tags = models.ManyToManyField(Tag)

@@ -6,19 +6,20 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <div class="container-fluid text-center">    
-    <div class="col-sm-8 text-left"> 
+    <div class="container-fluid text-center">
+    <div class="col-sm-8 text-left">
       <h1>{{location.name}}</h1>
       <h2>{{location.ratings}} Stars</h2>
       <p>Description: {{location.description}}</p>
       <p>Tags: {{location.tags}}</p>
+      <p>Contributed By: {{location.contributor.username}}</p>
   </div>
 </div>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-  </ol> 
+  </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
