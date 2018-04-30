@@ -137,9 +137,9 @@ def location_autocomplete(request):
 
 @login_required
 def addLocation(request):
-
+    
     if request.method == 'POST':
-        form = LocationAddForm(request.POST)
+        form = LocationAddForm(request.POST, request.FILES)
 
         if form.is_valid():
             new_loc = form.save()

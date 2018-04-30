@@ -29,31 +29,31 @@ class UserCreateForm(UserCreationForm):
 
 
 class LocationAddForm(forms.ModelForm):
+
     name = forms.CharField(max_length=100, help_text="Enter the name of location")
     description = forms.CharField(max_length=1000, help_text="Brief description of location")
-#     image = forms.ImageField()
-#     tags = forms.ModelMultipleChoiceField()
+    # contributor = User.objects.get(name=User.request.user.name)
+    tag_list = Tag.objects#.filter(tag_name__exact='park')
+    tags = forms.ModelMultipleChoiceField(queryset=tag_list)#, choices=tag_list)
+
+    ratings = forms.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(1)])
+    popularity = forms.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(1)])
+    image = forms.ImageField()
+
 
     class Meta:
         model = Location
-        fields = ("name", "description")
+        fields = ("name", "description", 'tags', 'ratings', 'popularity', 'image')
 
-    def clean_d(self):
+    def clean_name(self):
         name = self.cleaned_data['name']
-        description = self.cleaned_data['description']
-        r = Location.objects.filter(location__name__exact=name)
+
+
+        r = Location.objects.filter(name__exact=name)
         if r.count():
             raise ValidationError("A location with that name already exists. Please change location name.")
-        return name, description
 
-    def save(self, commit=True):
-        location = super(LocationAddForm, self).save(commit=False)
-        location.name = self.cleaned_data["name"]
-        location.description = self.cleaned_data["description"]
-
-        if commit:
-            location.save()
-        return location
+        return name
 
 
 class UserProfileForm(ModelForm):
