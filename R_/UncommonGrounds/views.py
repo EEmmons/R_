@@ -58,6 +58,8 @@ def discover(request):
     test = None
     if request.method == 'GET':
         search = request.GET.get("search")
+        if search is None:
+            search = ""
         # test = "TEST"
         words = search.lower().split(" ")
         for word in words:
@@ -162,10 +164,10 @@ def discover_search(request):
 
     location_list = []
 
-    test = None
     if request.method == 'GET':
         search = request.GET.get("search")
-        test = search
+        if search is None:
+            search = ""
         # = ""
         words = search.lower().split(" ")
         for word in words:
@@ -189,7 +191,7 @@ def discover_search(request):
                    'most_popular': most_popular,
                    'most_recent': most_recent,
                    'random': random,
-                   'test': test}
+                   }
 
         num_tags = Tag.objects.all().count()
 
