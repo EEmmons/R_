@@ -6,11 +6,13 @@
   <div class="row content">
     <div class="col-sm-10 text-left"> 
       <h1>Location List</h1>
-      <div class="form-group">
-        <label for="search">Search:</label>
-        <input type="text" class="form-control" id="location_autocomplete_input">
+      <div id="tfheader">
+        <form method="get" action="">
+          {% csrf_token %}
+          <input type="text" class="tftextinput" name="search" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+        </form>
+        <div class="tfclear"></div>
       </div>
-      <hr>
 
 <script>
   $(function() {
@@ -39,7 +41,7 @@
       </div>
   {% endfor %}
 {% else %}
-  <p>There are no users yet!</p>
+  <p>No locations were found.</p>
 {% endif %}
     </div>
   </div>

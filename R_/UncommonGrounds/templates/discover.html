@@ -80,8 +80,10 @@
         </style>
 
             <div id="tfheader">
-                <form id="tfnewsearch" method="get" action="http://www.google.com">
-                        <input type="text" class="tftextinput" id="location_autocomplete_input" size="21" name="q"><input type="submit" value="search" class="tfbutton">
+
+                <form method="get" action="locations/">
+                    {% csrf_token %}
+                    <input type="text" class="tftextinput" name="search" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
                 </form>
             <div class="tfclear"></div>
             </div>

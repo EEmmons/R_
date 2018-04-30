@@ -11,58 +11,200 @@ import datetime
 from random import randint
 import json
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.decorators.csrf import csrf_exempt
+from django.template import loader
 
 # Create your views here.
 
 
+@csrf_exempt
 def discover(request):
     """
     View function for home page of site.
     """
 
+
     # Generate counts of the main objects
-    location_list = Location.objects.all()
+    unfiltered_list = Location.objects.all()
     highest_rated  = None
     highest_rating = 0
-    for location in location_list:
+    for location in unfiltered_list:
         if location.ratings > highest_rating:
             highest_rated = location
             highest_rating = location.ratings
 
     most_popular = None
     highest_popularity = 0
-    for location in location_list:
+    for location in unfiltered_list:
         if location.popularity > highest_popularity:
             most_popular = location
             highest_popularity = location.popularity
 
-    most_recent = location_list[0]
-    latest_date = location_list[0].added
-    for location in location_list:
+    most_recent = unfiltered_list[0]
+    latest_date = unfiltered_list[0].added
+    for location in unfiltered_list:
         add = location.added
-        add2 = location_list[0].added
+        add2 = unfiltered_list[0].added
         if location.added > latest_date:
             most_recent = location
             latest_date = location.added
 
-    random = location_list[randint(0, len(location_list)-1)]
+    random = unfiltered_list[randint(0, len(unfiltered_list)-1)]
     while random == highest_rated or random == most_popular or random == most_recent:
-        random = location_list[randint(0, len(location_list)-1)]
+        random = unfiltered_list[randint(0, len(unfiltered_list)-1)]
+
+    location_list = []
+
+    test = None
+    if request.method == 'GET':
+        test = request.GET.get("search")
+        # test = "TEST"
+        search = ""
+        words = search.lower().split(" ")
+        for word in words:
+            for location in unfiltered_list:
+                locationWords = []
+                t = location.tags.all()
+                n = location.name.lower().split(" ")
+                d = location.description.lower().split(" ")
+                locationWords += list(location.tags.all())
+                locationWords += location.name.lower().split(" ")
+                locationWords += location.description.lower().split(" ")
+                if word in locationWords:
+                    location_list += [location]
+
+        # location
 
 
-
-    num_tags = Tag.objects.all().count()
-
-    # Render the HTML template index.html with the data in the context variable
-    return render(
-        request,
-        'discover.html',
-        context = {'location_list':location_list,
-                   'highest_rated':highest_rated,
+        template = loader.get_template('discover.html')
+        context = {'location_list': location_list,
+                   'highest_rated': highest_rated,
                    'most_popular': most_popular,
-                   'most_recent':  most_recent,
-                   'random': random}
-    )
+                   'most_recent': most_recent,
+                   'random': random,
+                   'test': test}
+
+        num_tags = Tag.objects.all().count()
+
+        # Render the HTML template index.html with the data in the context variable
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('discover.html')
+        context = {'location_list': location_list,
+                   'highest_rated': highest_rated,
+                   'most_popular': most_popular,
+                   'most_recent': most_recent,
+                   'random': random,
+                   'test': test}
+        return HttpResponse(template.render(context, request))
+    # if post request came
+    # words = None
+    # if request.method == 'POST':
+    #     # getting values from post
+    #     name = request.POST.get('name')
+    #     email = request.POST.get('email')
+    #     phone = request.POST.get('phone')
+    #
+    #     words = name.split(" ")
+    #     # adding the values in a context variable
+    #     context = {
+    #         # 'name': name,
+    #         # 'email': email,
+    #         # 'phone': phone,
+    #         'words': words
+    #     }
+    #
+    #     # getting our showdata template
+    #     template = loader.get_template('showdata.html')
+    #
+    #     # returing the template
+    #     return HttpResponse(template.render(context, request))
+    # else:
+    #     # if post request is not true
+    #     # returing the form template
+    #     template = loader.get_template('index.html')
+    #     return HttpResponse(template.render())
+
+@csrf_exempt
+def discover_search(request):
+    """
+    View function for home page of site.
+    """
+
+
+    # Generate counts of the main objects
+    unfiltered_list = Location.objects.all()
+    highest_rated  = None
+    highest_rating = 0
+    for location in unfiltered_list:
+        if location.ratings > highest_rating:
+            highest_rated = location
+            highest_rating = location.ratings
+
+    most_popular = None
+    highest_popularity = 0
+    for location in unfiltered_list:
+        if location.popularity > highest_popularity:
+            most_popular = location
+            highest_popularity = location.popularity
+
+    most_recent = unfiltered_list[0]
+    latest_date = unfiltered_list[0].added
+    for location in unfiltered_list:
+        add = location.added
+        add2 = unfiltered_list[0].added
+        if location.added > latest_date:
+            most_recent = location
+            latest_date = location.added
+
+    random = unfiltered_list[randint(0, len(unfiltered_list)-1)]
+    while random == highest_rated or random == most_popular or random == most_recent:
+        random = unfiltered_list[randint(0, len(unfiltered_list)-1)]
+
+    location_list = []
+
+    test = None
+    if request.method == 'GET':
+        search = request.GET.get("search")
+        test = search
+        # = ""
+        words = search.lower().split(" ")
+        for word in words:
+            for location in unfiltered_list:
+                locationWords = []
+                t = location.tags.all()
+                n = location.name.lower().split(" ")
+                d = location.description.lower().split(" ")
+                locationWords += list(location.tags.all())
+                locationWords += location.name.lower().split(" ")
+                locationWords += location.description.lower().split(" ")
+                if word in locationWords:
+                    location_list += [location]
+
+        # location
+
+
+        template = loader.get_template('UncommonGrounds/location_list.html')
+        context = {'location_list': location_list,
+                   'highest_rated': highest_rated,
+                   'most_popular': most_popular,
+                   'most_recent': most_recent,
+                   'random': random,
+                   'test': test}
+
+        num_tags = Tag.objects.all().count()
+
+        # Render the HTML template index.html with the data in the context variable
+        return HttpResponse(template.render(context, request))
+    else:
+        template = loader.get_template('discover.html')
+        context = {'location_list': location_list,
+                   'highest_rated': highest_rated,
+                   'most_popular': most_popular,
+                   'most_recent': most_recent,
+                   'random': random,
+                   'test': test}
+        return HttpResponse(template.render(context, request))
 
 from UncommonGrounds.forms import UserCreateForm
 from django.contrib.auth import login as auth_login
@@ -112,15 +254,15 @@ def addUser(request):
 
 def about(request):
     return render(
-	    request,
-	    'UncommonGrounds/about.html',
-	    )
+        request,
+        'UncommonGrounds/about.html',
+        )
 
 def login(request):
     return render(
-	    request,
-	    'UncommonGrounds/login.html',
-	    )
+        request,
+        'UncommonGrounds/login.html',
+        )
 
 def location_autocomplete(request):
     if request.is_ajax():
@@ -160,13 +302,13 @@ class TagListView(generic.ListView):
     model = Tag
 
 class CommentListView(generic.ListView):
-	model = Comment
+    model = Comment
 
 class UserListView(generic.ListView):
-	model = User
+    model = User
 
 class ProfileListView(generic.ListView):
-	model = Profile
+    model = Profile
 
 def activate(request, uidb64, token):
     try:
