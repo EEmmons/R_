@@ -66,7 +66,7 @@
                 <div class="col-sm-11">
                   <div class="media">
                     <div class="media-left">
-                      <img src="{{ favorites.image.url }}" class="media-object" style="max-height: 75%">
+                      <img src="{{ favorites.image.url }}" class="media-object" style="max-height: 30%">
                     </div>
                     <div>
                       <a href="{{ favorites.get_absolute_url }}"><h4 class="media-heading">{{ favorites }}</h4></a>
@@ -106,7 +106,7 @@
         <div class="carousel-inner" style="max-height: 410px">
           <div class="item active">
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-              <a href="{{ favorites.get_absolute_url }}"><img src="{{ favorites.image.url }}" alt="Responsive" style="margin: auto; width: 100%"></a>
+              <a href="{{ favorites.get_absolute_url }}"><img src="{{ favorites.image.url }}" alt="Responsive" style="margin: auto; width: 100%; max-height: 75%"></a>
             <div class="carousel-caption" style="position: absolute; top: 20px">
               <h3>{{ favorites }}</h3>
               {{ favorites.rating }}
