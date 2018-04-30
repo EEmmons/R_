@@ -4,7 +4,8 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.files.uploadedfile import SimpleUploadedFile
-from .models import Location, Profile
+from django.core.validators import MaxValueValidator, MinValueValidator
+from .models import Location, Profile, Tag
 
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(required=True, label='Enter email')
