@@ -15,6 +15,7 @@ urlpatterns = [
 	path('comments/', views.CommentListView.as_view(), name='comments'),
 	path('location/create/', views.addLocation, name='location_form'),
 	path('location-autocomplete/', location_autocomplete, name='location-autocomplete'),
+	path('user-autocomplete/', user_autocomplete, name='user-autocomplete'),
 	#path('profile/', views.RedirectView.as_view(url="{% url 'user_profile' user.username %}", permanent=False), name='active_user_profile')
 	path('<username>/', views.profile_page, name='user_profile'),
 	path('<username>/edit/<int:pk>', views.ProfileUpdate.as_view(), name='edit_profile'),

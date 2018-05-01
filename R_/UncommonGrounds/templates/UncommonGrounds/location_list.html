@@ -27,13 +27,12 @@
 {% if location_list %}
   {% for location in location_list %}
       <div class="col-sm-11">
-        <h3>{{ location.name }}</h3>
         <div class="media">
           <div class="media-left">
             <a href="{{ location.get_absolute_url }}"><img src="{{ location.image.url }}" class="media-object"></a>
           </div>
           <div class="media-body">
-            <a href="{{ location.get_absolute_url }}"><h4 class="media-heading">{{ location.name }}</h4></a>
+            <a href="{{ location.get_absolute_url }}"><h3 class="media-heading">{{ location.name }}</h3></a>
             <p>{{ location.description }}</p>
           </div>
           <hr>

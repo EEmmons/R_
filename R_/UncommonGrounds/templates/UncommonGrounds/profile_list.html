@@ -2,21 +2,37 @@
 {% block content %}
 {% load static %}
 <link href="{% static 'css/discover.css' %}" type="text/css" rel="stylesheet" />
-<div class="container-fluid text-center">    
+<div class="container-fluid text-center">
   <div class="row content">
-    <div class="col-sm-10 text-left"> 
-      <h1>Profile List</h1>
-      <hr>
+    <div class="col-sm-10 text-left">
+      <h1>Uncommon Friends List</h1>
+      <div id="tfheader">
+        <form method="get" action="">
+          {% csrf_token %}
+          <input type="text" class="tftextinput" name="Search for Uncommon Friends" id="user_autocomplete_input" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+        </form>
+        <div class="tfclear"></div>
+      </div>
+
+<script>
+  $(function() {
+    $("#user_autocomplete_input").autocomplete({
+      source: "{% url 'user-autocomplete' %}",
+      minLength: 1,
+    });
+  });
+</script>
 
 {% if profile_list %}
   {% for profile in profile_list %}
       <div class="col-sm-11">
+        <a href="{% url 'user_profile' profile.user.username %}"><h3 class="media-heading">{{ profile.user.username }}</h3></a>
         <div class="media">
           <div class="media-left">
-            <img src="{{ profile.profile_image.url }}" class="media-object">
+            <a href="{{ profile.get_absolute_url }}"><img src="{{ profile.profile_image.url }}" class="media-object">
           </div>
           <div class="media-body">
-            <a href="{% url 'user_profile' profile.user.username %}"><h4 class="media-heading">{{ profile.user.username }}</h4></a>
+
             <p>Joined: {{ profile.user_since }}</p>
           </div>
           <hr>
